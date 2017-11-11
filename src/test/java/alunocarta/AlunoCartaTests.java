@@ -16,7 +16,7 @@ public class AlunoCartaTests {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void testHome() throws Exception {
+    public void dado_lista_aluno_nota_menor_7_deve_retornar_lista_mala_direta() {
 
     }
 }
