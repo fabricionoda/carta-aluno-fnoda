@@ -2,9 +2,13 @@ package alunocarta.thirdservice;
 
 import java.math.BigDecimal;
 
-public class Disciplina {
+public class Nota {
     String disciplina;
     BigDecimal nota;
+
+    public static Nota of() {
+        return new Nota();
+    }
 
     public String getDisciplina() {
         return disciplina;
@@ -20,5 +24,9 @@ public class Disciplina {
 
     public void setNota(BigDecimal nota) {
         this.nota = nota;
+    }
+
+    public boolean isAbaixoDaMedia(BigDecimal mediaNota) {
+        return nota.compareTo(mediaNota) <= 0;
     }
 }

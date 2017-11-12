@@ -1,6 +1,6 @@
 package alunocarta.controller;
 
-import alunocarta.service.MalaDiretaAlunoService;
+import alunocarta.service.MalaDiretaAlunoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class MalaDiretaController {
 
     @Autowired
-    MalaDiretaAlunoService malaDiretaAlunoService;
+    MalaDiretaAlunoServiceImpl malaDiretaAlunoServiceImpl;
 
     @PostMapping(value = "notificaralunosrisco", produces = MediaType.APPLICATION_JSON_VALUE)
     public Integer enviarEmailAlunosRiscoReprovacao() {
-        return malaDiretaAlunoService.enviarEmailAlunosRiscoReprovacao();
+        return malaDiretaAlunoServiceImpl.enviarEmailAlunosRiscoReprovacao();
     }
 
 }
