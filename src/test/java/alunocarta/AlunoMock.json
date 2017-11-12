@@ -1,0 +1,22 @@
+{
+  "alunos": [
+    {
+      "documento": "802.478.748-25",
+      "nome": "Gabriel Souza",
+      "endereco": "Av Horaccio Racanello, 4760",
+      "cep": "87020035"
+    },
+    {
+      "documento": "945.525.511-16",
+      "nome": "Ricardo Pereira Silva",
+      "endereco": "Av. XV de Novembro, 192",
+      "cep": "87040220"
+    },
+    {
+      "documento": "567.528.132-05",
+      "nome": "Leonardo Moraes Bitencourt",
+      "endereco": "R Arthur Thomas, 142",
+      "cep": "87013250"
+    }
+  ]
+}

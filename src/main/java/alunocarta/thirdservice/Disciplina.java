@@ -3,15 +3,15 @@ package alunocarta.thirdservice;
 import java.math.BigDecimal;
 
 public class Disciplina {
-    String nome;
+    String disciplina;
     BigDecimal nota;
 
-    public String getNome() {
-        return nome;
+    public String getDisciplina() {
+        return disciplina;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDisciplina(String disciplina) {
+        this.disciplina = disciplina;
     }
 
     public BigDecimal getNota() {
