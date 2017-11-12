@@ -23,8 +23,8 @@ public class MalaDiretaAlunoService {
     private RestTemplate restTemplate;
 
     public Integer enviarEmailAlunosRiscoReprovacao() {
-        alunos("");
-        boletins("http://www.mocky.io/v2/5a079cb42f0000a10ce610ef");
+        alunos("http://www.mocky.io/v2/5a08923c3200000707137ffb");
+        boletins("http://www.mocky.io/v2/5a0892693200000807137ffc");
         return null;
     }
 
