@@ -1,11 +1,25 @@
 package alunocarta.model;
 
+import alunocarta.thirdservice.escola.model.Aluno;
+
 public class MalaDiretaAluno {
 
+    public static final String MENSAGEM_RISCO_REPROVACAO = "Atenção, você possui uma ou mais displinas com risco de reprovação";
     private String nome;
     private String endereco;
     private String cep;
     private String mensagem;
+
+    public MalaDiretaAluno(Aluno aluno) {
+        nome = aluno.getNome();
+        endereco = aluno.getEndereco();
+        cep = aluno.getCep();
+        mensagem = MENSAGEM_RISCO_REPROVACAO;
+    }
+
+    public static MalaDiretaAluno of(Aluno aluno) {
+        return new MalaDiretaAluno(aluno);
+    }
 
     public String getNome() {
         return nome;

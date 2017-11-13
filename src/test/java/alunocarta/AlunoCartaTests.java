@@ -21,8 +21,4 @@ public class AlunoCartaTests {
         assertThat(restTemplate).isNotNull();
     }
 
-    @Test
-    public void dado_lista_aluno_nota_menor_7_deve_retornar_lista_mala_direta() {
-
-    }
 }

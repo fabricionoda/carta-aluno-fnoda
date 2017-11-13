@@ -1,12 +1,13 @@
-package alunocarta.thirdservice;
+package alunocarta.thirdservice.escola.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BoletimResponse {
-    List<Boletim> boletins;
+    private List<Boletim> boletins = new ArrayList<>();
 
     public List<Boletim> getBoletins() {
         return boletins;

@@ -1,5 +1,5 @@
 package alunocarta.service;
 
-public interface MalaDiretaService {
+public interface MalaDiretaAlunoService {
     Integer enviarEmailAlunosRiscoReprovacao();
 }

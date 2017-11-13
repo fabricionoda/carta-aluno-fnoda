@@ -1,43 +1,51 @@
 package alunocarta.service;
 
 import alunocarta.model.MalaDiretaAluno;
-import alunocarta.thirdservice.Aluno;
-import alunocarta.thirdservice.AlunoResponse;
-import alunocarta.thirdservice.Boletim;
-import alunocarta.thirdservice.BoletimResponse;
+import alunocarta.thirdservice.email.EmailClient;
+import alunocarta.thirdservice.escola.model.Aluno;
+import alunocarta.thirdservice.escola.model.Boletim;
+import alunocarta.thirdservice.escola.ServicoCadastroClient;
+import alunocarta.thirdservice.escola.ServicoNotasClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class MalaDiretaAlunoServiceImpl implements MalaDiretaService{
+public class MalaDiretaAlunoServiceImpl implements MalaDiretaAlunoService {
 
-    private static final Logger log = LoggerFactory.getLogger(MalaDiretaAlunoServiceImpl.class);
     public static final BigDecimal MEDIA_NOTA = BigDecimal.valueOf(7);
 
     @Autowired
-    private RestTemplate restTemplate;
+    private ServicoCadastroClient servicoCadastroClient;
+
+    @Autowired
+    private ServicoNotasClient servicoNotasClient;
+
+    @Autowired
+    private EmailClient emailClient;
 
     public Integer enviarEmailAlunosRiscoReprovacao() {
-        List<Boletim> boletins = boletins("http://www.mocky.io/v2/5a0892693200000807137ffc");
-
+        List<Boletim> boletins = servicoNotasClient.boletins();
         List<String> cpfAlunosAbaixoMedia = alunosAbaixoMediaEm(boletins);
-
         List<MalaDiretaAluno> malasDireta = criarMalasDiretaDe(cpfAlunosAbaixoMedia);
-
-        List<Aluno> alunos = alunos("http://www.mocky.io/v2/5a08923c3200000707137ffb");
-
-        return null;
+        return emailClient.enviar(malasDireta);
     }
 
     private List<MalaDiretaAluno> criarMalasDiretaDe(List<String> cpfAlunosAbaixoMedia) {
-        return null;
+        List<MalaDiretaAluno> malasDireta = new LinkedList<>();
+        for (String cpf : cpfAlunosAbaixoMedia) {
+            Aluno aluno = servicoCadastroClient.buscaAlunoPorCPF(cpf);
+            if (aluno == null)
+                continue;
+            malasDireta.add(MalaDiretaAluno.of(aluno));
+        }
+        return malasDireta;
     }
 
     private List<String> alunosAbaixoMediaEm(List<Boletim> boletins) {
@@ -48,11 +56,5 @@ public class MalaDiretaAlunoServiceImpl implements MalaDiretaService{
                 .collect(Collectors.toList());
     }
 
-    private List<Aluno> alunos(final String url) {
-        return restTemplate.getForObject(url, AlunoResponse.class).getAlunos();
-    }
 
-    private List<Boletim> boletins(final String url) {
-        return restTemplate.getForObject(url, BoletimResponse.class).getBoletins();
-    }
 }

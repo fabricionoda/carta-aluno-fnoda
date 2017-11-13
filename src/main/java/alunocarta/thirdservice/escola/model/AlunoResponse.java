@@ -1,4 +1,4 @@
-package alunocarta.thirdservice;
+package alunocarta.thirdservice.escola.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

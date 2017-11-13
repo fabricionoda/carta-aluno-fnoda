@@ -1,10 +1,14 @@
-package alunocarta.thirdservice;
+package alunocarta.thirdservice.escola.model;
 
 public class Aluno {
     String documento;
     String nome;
     String endereco;
     String cep;
+
+    public static Aluno of() {
+        return new Aluno();
+    }
 
     public String getDocumento() {
         return documento;
@@ -36,5 +40,9 @@ public class Aluno {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public String cpfSomenteNumeros() {
+        return documento.replaceAll("\\D+","");
     }
 }

@@ -1,5 +1,6 @@
 package alunocarta.thirdservice;
 
+import alunocarta.thirdservice.escola.model.Nota;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,5 +30,4 @@ public class NotaTest {
         nota.setNota(BigDecimal.valueOf(7));
         Assert.assertTrue(nota.isAbaixoDaMedia(MEDIA_NOTA));
     }
-
 }
